@@ -4,7 +4,7 @@ output "primary_endpoint" {
     Cluster mode disabled : primary_endpoint_address (single shard)
     Cluster mode enabled  : configuration_endpoint_address (cluster-aware clients required)
   EOT
-  value = module.valkey_cluster.primary_endpoint
+  value       = module.valkey_cluster.primary_endpoint
 }
 
 output "reader_endpoint" {
@@ -28,7 +28,7 @@ output "secret_arn" {
     Contains: auth_token, primary_endpoint, reader_endpoint, port, tls.
     Consumed by ESO ExternalSecret in k8s-manifests.
   EOT
-  value = module.secrets.secret_arn
+  value       = module.secrets.secret_arn
 }
 
 output "replication_group_id" {

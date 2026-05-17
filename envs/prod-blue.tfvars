@@ -12,7 +12,7 @@ aws_region   = "us-east-1"
 # data_subnet_ids = ["<from vpc output>"]
 
 blue_vpc_cidr  = "10.120.0.0/16"
-green_enabled  = false      # flip to true when green EKS cluster is live
+green_enabled  = false # flip to true when green EKS cluster is live
 green_vpc_cidr = "10.121.0.0/16"
 
 az_count = 3 # prod: 3 AZs for standard HA

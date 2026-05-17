@@ -30,17 +30,17 @@ node_type      = "cache.r7g.large" # ARM Graviton — dev/staging
 # num_shards = 1  → cluster mode DISABLED (dev/staging)
 # num_shards = 3  → cluster mode ENABLED  (prod — 3-shard horizontal sharding)
 num_shards         = 1
-replicas_per_shard = 1  # 1 primary + 1 replica → automatic failover enabled
+replicas_per_shard = 1 # 1 primary + 1 replica → automatic failover enabled
 multi_az_enabled   = false
 
 # ── Snapshots + Maintenance ───────────────────────────────────────────────────
-snapshot_retention_days = 1     # dev: 1 day   prod: 7 days
+snapshot_retention_days = 1 # dev: 1 day   prod: 7 days
 snapshot_window         = "03:00-04:00"
 maintenance_window      = "mon:04:00-mon:05:00"
 
 # ── Operations ────────────────────────────────────────────────────────────────
-apply_immediately           = true  # dev: apply now   prod: false (maintenance window)
-secret_recovery_window_days = 0     # 0 = immediate delete (dev only)
+apply_immediately           = true # dev: apply now   prod: false (maintenance window)
+secret_recovery_window_days = 0    # 0 = immediate delete (dev only)
 
 # ── Tags ──────────────────────────────────────────────────────────────────────
 team        = "infra-core"

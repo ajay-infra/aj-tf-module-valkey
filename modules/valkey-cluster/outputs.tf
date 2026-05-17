@@ -17,7 +17,7 @@ output "reader_endpoint" {
     Available in cluster mode disabled only. In cluster mode, use primary_endpoint
     with a cluster-aware client that handles read routing internally.
   EOT
-  value = aws_elasticache_replication_group.valkey.reader_endpoint_address
+  value       = aws_elasticache_replication_group.valkey.reader_endpoint_address
 }
 
 output "port" {
