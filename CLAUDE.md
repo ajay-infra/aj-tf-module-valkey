@@ -12,6 +12,36 @@ Valkey is the BSD-licensed open-source fork of Redis (API-compatible). AWS made 
 
 ---
 
+## Where It Fits
+
+**Architecture layer:** L6 — Data (ElastiCache Valkey)
+**Provisioned by:** `aj-infra-release` — data layer pipeline stage (not yet wired; target: `provision-eks.yml` Stage 4 alongside Aurora)
+**Depends on:** data VPC subnet IDs from `aj-tf-module-vpc` outputs
+**State key pattern:** `workload/blue-green/<env>/valkey/terraform.tfstate`
+
+## How to Use
+
+Not yet wired into the release pipeline. Planned as Stage 4 of `provision-eks.yml`.
+
+To use manually:
+```bash
+terraform init \
+  -backend-config="bucket=<TF_STATE_BUCKET>" \
+  -backend-config="key=workload/blue-green/<env>/valkey/terraform.tfstate" \
+  -backend-config="region=us-east-1" \
+  -backend-config="use_lockfile=true"
+
+terraform apply \
+  -var-file=aj-infra-release/envs/workload/blue-green/<env>/common.tfvars \
+  -var-file=aj-infra-release/envs/workload/blue-green/<env>/valkey.tfvars \
+  -var="data_subnet_ids=[...]" \
+  -var="blue_vpc_cidr=10.100.0.0/16"
+```
+
+tfvars file to configure: `aj-infra-release/envs/workload/blue-green/<env>/valkey.tfvars`
+
+---
+
 ## Module Structure
 
 ```
@@ -24,7 +54,7 @@ root:
   locals.tf         → name_prefix, cluster_mode_enabled, automatic_failover_enabled, allowed_cidr_blocks
   variables.tf      → all input variables with validation + EOT descriptions
   outputs.tf        → primary_endpoint, reader_endpoint, port, security_group_id, secret_arn
-  providers.tf      → Terraform = 1.7.5, AWS = 5.100.0, random = 3.6.3
+  providers.tf      → Terraform = 1.10.5, AWS = 5.100.0, random = 3.6.3
 ```
 
 ---
