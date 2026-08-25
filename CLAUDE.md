@@ -24,7 +24,7 @@ root:
   locals.tf         → name_prefix, cluster_mode_enabled, automatic_failover_enabled, allowed_cidr_blocks
   variables.tf      → all input variables with validation + EOT descriptions
   outputs.tf        → primary_endpoint, reader_endpoint, port, security_group_id, secret_arn
-  providers.tf      → Terraform = 1.7.5, AWS = 5.100.0, random = 3.6.3
+  providers.tf      → Terraform = 1.10.5, AWS = 5.100.0, random = 3.6.3
 ```
 
 ---
@@ -86,7 +86,10 @@ Valkey is NOT part of the blue/green swap — it's shared data infrastructure.
 ## Running Locally (Podman container)
 
 ```bash
-make shell                              # from My-Infra/
+# from aj-infra-context/local-testing/ (formerly My-Infra/ — repo renamed;
+# this Podman workflow currently has no Makefile/Dockerfile, see that repo's
+# local-testing/README.md for the known gap)
+make shell
 cd /workspaces/aj-tf-module-valkey
 terraform init -backend=false
 terraform plan -var-file=example.tfvars

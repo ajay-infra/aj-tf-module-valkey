@@ -121,6 +121,6 @@ When `num_shards > 1`, Kong's `rate-limiting-advanced` plugin must be configured
 
 | Tool | Version |
 |---|---|
-| Terraform | `= 1.7.5` |
+| Terraform | `= 1.10.5` |
 | AWS provider | `= 5.100.0` |
 | random provider | `= 3.6.3` |
