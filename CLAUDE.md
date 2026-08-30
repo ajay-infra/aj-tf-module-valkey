@@ -36,7 +36,7 @@ root:
 - **az_count slices subnet list** — same pattern as eks + vpc modules; pass all data subnets, module uses only az_count of them
 - **Cluster mode driven by num_shards** — `num_shards = 1` → cluster mode disabled (dev/staging); `num_shards > 1` → cluster mode enabled (prod); no separate toggle needed
 - **Automatic failover from replicas** — `automatic_failover_enabled` is derived from `replicas_per_shard >= 1`; no manual toggle
-- **Auth token in Secrets Manager** — random 64-char alphanumeric token; full connection bundle (auth_token + endpoints + port + tls) written to Secrets Manager after cluster is up; ESO ExternalSecret in k8s-manifests pulls this into K8s Secrets
+- **Auth token in Secrets Manager** — random 64-char alphanumeric token; full connection bundle (auth_token + endpoints + port + tls) written to Secrets Manager after cluster is up; ESO ExternalSecret in aj-cluster-baseline pulls this into K8s Secrets
 - **TLS always on** — `transit_encryption_enabled = true` unconditional; no variable to disable it
 - **At-rest encryption always on** — `at_rest_encryption_enabled = true` default; variable exposed for auditability
 - **Graviton ARM nodes** — `cache.r7g.*` by default; ~20% cheaper vs x86 equivalent for same memory/throughput
@@ -63,7 +63,7 @@ root:
 ## Outputs Used by Downstream Modules
 
 `aj-infra-release` consumes these as `-var` flags or remote state:
-- `secret_arn` → ESO `ExternalSecret` in k8s-manifests (fetches auth_token + endpoints)
+- `secret_arn` → ESO `ExternalSecret` in aj-cluster-baseline (fetches auth_token + endpoints)
 - `security_group_id` → optionally added to EKS node group SG rules
 - `primary_endpoint` → can be passed to Kong Helm values for rate-limiting plugin config
 - `cluster_mode_enabled` → determines whether Kong uses `redis` or `redis_cluster` strategy

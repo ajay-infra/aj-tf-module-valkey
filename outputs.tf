@@ -26,7 +26,7 @@ output "secret_arn" {
   description = <<-EOT
     Secrets Manager ARN for the Valkey connection bundle.
     Contains: auth_token, primary_endpoint, reader_endpoint, port, tls.
-    Consumed by ESO ExternalSecret in k8s-manifests.
+    Consumed by ESO ExternalSecret in aj-cluster-baseline.
   EOT
   value       = module.secrets.secret_arn
 }
