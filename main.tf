@@ -42,7 +42,7 @@ module "valkey_cluster" {
 
 # ── Connection Bundle (Secrets Manager) ───────────────────────────────────────
 # Write the full connection details into the secret after the cluster is up.
-# ESO ExternalSecret in k8s-manifests pulls this as a K8s Secret into each
+# ESO ExternalSecret in aj-cluster-baseline pulls this as a K8s Secret into each
 # namespace that needs Valkey access (e.g. Kong rate-limiting, RAG backend).
 #
 # Secret JSON schema:
