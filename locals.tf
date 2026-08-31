@@ -23,6 +23,10 @@ locals {
   )
 
   full_tags = merge(var.common_tags, {
+    # The estate's base set — see aj-skill-farm/rules/tagging.yaml.
+    Project     = "aj-tf-module-valkey"
+    ManagedBy   = "Terraform"
+    Repository  = "aj-tf-module-valkey"
     Environment = var.environment
     Team        = var.team
     CostCenter  = var.cost_center
