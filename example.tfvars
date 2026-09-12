@@ -2,7 +2,7 @@
 # Replace dummy VPC/subnet IDs with real outputs from aj-tf-module-vpc
 
 # ── Core ──────────────────────────────────────────────────────────────────────
-cluster_name = "ai-search-dev"
+cluster_name = "dev"
 aws_region   = "us-east-1"
 environment  = "dev"
 
