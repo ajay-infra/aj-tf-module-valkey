@@ -4,6 +4,15 @@ All notable changes to this module are documented here. Format loosely follows [
 
 ## [Unreleased]
 
+### Changed — `team` is required and must be a team code
+Breaking: `var.team` no longer defaults to `infra-core`; it must be
+`team-NNNN`, a row in `aj-infra/envs/org/teams.yaml`. Every consumer in the
+estate already passes one (`team = "team-0001"` in aj-infra's tfvars since
+2026-09-12), so nothing changes for them; a caller that forgot would have
+tagged resources — and labelled namespaces — with a slug nobody registered,
+which `require-product-code` now refuses at admission. Next tag is a major.
+
+
 ### Fixed
 - `README.md`'s "Requirements" table and `CLAUDE.md`'s module structure line both said Terraform `= 1.7.5` — `providers.tf` actually pins `= 1.10.5`, matching the platform-wide Terraform 1.10.5 / S3-native-locking migration already reflected everywhere else. Same stale-version pattern already found and fixed in `aj-tf-module-vpc`, `aj-tf-module-eks`, and `aj-tf-module-aurora`.
 - `skills.md`'s "Stable ref" pointed at `github.com/ajaylakma/aj-tf-module-valkey?ref=valkey-01` — wrong org (real org is `ajay-infra`) and a branch that doesn't exist (only `main` exists — confirmed via `git branch -a`; no tags existed either, despite `README.md`'s own Usage example already correctly referencing `?ref=v1.0.0`). Same pattern found 4+ times this project now. Fixed the ref to match `README.md` and cut the `v1.0.0` tag (module was fully implemented with no prior release).
