@@ -43,7 +43,7 @@ apply_immediately           = true # dev: apply now   prod: false (maintenance w
 secret_recovery_window_days = 0    # 0 = immediate delete (dev only)
 
 # ── Tags ──────────────────────────────────────────────────────────────────────
-team        = "infra-core"
+team        = "team-0001"   # a team code — aj-infra/envs/org/teams.yaml
 cost_center = "infra-2026-q1"
 tags = {
   Owner = "ajay"
